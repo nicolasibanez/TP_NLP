@@ -1,0 +1,4 @@
+checkpoint: ckpt/roberta-large_20240327_174024.pth
+model: roberta-large
+test_acc: 0.9228420195439739
+test_loss: 0.301772958075162

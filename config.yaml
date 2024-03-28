@@ -1,0 +1,55 @@
+model:
+  # name: "distilbert-base-uncased"
+  # name: "bert-base-uncased"
+  # name: "bert-large-uncased"
+  # name: "roberta-base"
+  name: "roberta-large"
+  # name: "bert-large-uncased"
+  num_labels: 3
+  model_cfg:
+    hidden_sizes: []
+
+  # model_state_dict: "bert-large-uncased_20240327_123313.pth"
+  # model_state_dict: "roberta-large_20240327_103801.pth"
+
+  # model_state_dict: "distilbert-base-uncased_20240323_164414.pth"
+
+
+  model_state_dict: "roberta-large_20240327_103801.pth"
+  # model_state_dict: "roberta-large_20240327_103720.pth"
+  # model_state_dict: "bert-large-uncased_20240327_123313.pth"
+  # model_state_dict: "roberta-large_20240327_174024.pth"
+  # model_state_dict: "bert-large-uncased_20240327_173829.pth"
+  # model_state_dict: "bert-large-uncased_20240327_103627.pth"
+
+  TTA: false
+
+
+data:
+  name: "snli"
+  filter_label: -1
+  max_length: 128
+  batch_size: 30
+  # batch_size: 10
+  augmentation: false
+
+optimizer:
+  name: "Adam"
+  lr: 1e-7
+
+training:
+  num_epochs: 20
+  use_gpu: true
+
+  unfreeze_epoch: 0
+
+  use_wandb: true
+  wandb_project: "NLP_LAB_CS"
+  wandb_entity: "dips_learning_2023"
+
+  use_reduce_lr: true
+  reduce_lr_factor: 0.5
+  reduce_lr_patience: 0
+
+  use_warmup: false
+  warmup_proportion: 0.05

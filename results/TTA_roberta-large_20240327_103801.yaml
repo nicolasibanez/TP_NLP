@@ -1,0 +1,5 @@
+TTA: true
+checkpoint: ckpt/roberta-large_20240327_103801.pth
+model: roberta-large
+test_acc: 0.7300488599348535
+test_loss: 0.43819483667945436

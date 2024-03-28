@@ -1,0 +1,4 @@
+checkpoint: ckpt/bert-large-uncased_20240327_103627.pth
+model: bert-large-uncased
+test_acc: 0.896478013029316
+test_loss: 0.2858629703476298
