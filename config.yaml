@@ -1,9 +1,11 @@
 model:
-  # name: "distilbert-base-uncased"
+  name: "distilbert-base-uncased"
   # name: "bert-base-uncased"
   # name: "bert-large-uncased"
   # name: "roberta-base"
-  name: "roberta-large"
+#  name: "roberta-large"
+  # name: "microsoft/deberta-v3-large"
+  # name: "huawei-noah/TinyBERT_General_4L_312D"
   # name: "bert-large-uncased"
   num_labels: 3
   model_cfg:
@@ -15,30 +17,34 @@ model:
   # model_state_dict: "distilbert-base-uncased_20240323_164414.pth"
 
 
-  model_state_dict: "roberta-large_20240327_103801.pth"
+  # model_state_dict: "roberta-large_20240327_103801.pth"
   # model_state_dict: "roberta-large_20240327_103720.pth"
   # model_state_dict: "bert-large-uncased_20240327_123313.pth"
   # model_state_dict: "roberta-large_20240327_174024.pth"
+  model_state_dict: "deberta-v3-large_20240329_115256.pth"
+  # model_state_dict: "deberta-v3-large_20240329_024714.pth"
+  # model_state_dict: "bert-base-uncased_20240328_201206.pth"
+  # model_state_dict: "roberta-base_20240328_200823.pth"
+  # model_state_dict: "TinyBERT_General_4L_312D_20240328_145724.pth"
   # model_state_dict: "bert-large-uncased_20240327_173829.pth"
   # model_state_dict: "bert-large-uncased_20240327_103627.pth"
-
-  TTA: false
-
+  # model_state_dict: "bert-large-uncased_20240327_173829.pth"
 
 data:
   name: "snli"
   filter_label: -1
   max_length: 128
-  batch_size: 30
+  batch_size: 12
+  subset_ratio: 0.1
   # batch_size: 10
   augmentation: false
 
 optimizer:
   name: "Adam"
-  lr: 1e-7
+  lr: 5e-6
 
 training:
-  num_epochs: 20
+  num_epochs: 40
   use_gpu: true
 
   unfreeze_epoch: 0

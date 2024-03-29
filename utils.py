@@ -19,6 +19,7 @@ def train(
     loss_fn: nn.Module,
     optimizer: optim.Optimizer,
     current_epoch: int,
+    subset_ratio: float = 1.0,
     # lr_scheduler: optim.lr_scheduler._LRScheduler = None,
     use_wandb: bool = False,
     frequency_log: int = 10
@@ -32,15 +33,25 @@ def train(
 
     batch_size = dataloader.batch_size
 
-    progress_bar = tqdm(dataloader, desc=f"Epoch {current_epoch + 1}")
+    nb_batches = int(len(dataloader) * subset_ratio)
+    iter_dataloader = iter(dataloader)
+
+    # progress_bar = tqdm(dataloader, desc=f"Epoch {current_epoch + 1}")
+    # progress_bar = tqdm(dataloader, desc=f"Epoch {current_epoch + 1}")
+    progress_bar = tqdm(range(nb_batches), desc=f"Epoch {current_epoch + 1}")
 
     # scaler = torch.cuda.amp.GradScaler()
 
-    first_batch = next(iter(dataloader))
 
 
-    for batch, (inputs, labels) in enumerate(progress_bar):
+    for batch in progress_bar:
 
+        try:
+            inputs, labels = next(iter_dataloader)
+        except StopIteration:
+            iter_dataloader = iter(dataloader)
+            inputs, labels = next(iter_dataloader)
+            
         # overfit on the first batch
         # inputs, labels = first_batch
 
@@ -85,11 +96,12 @@ def train(
 
         progress_bar.set_postfix({'Current Loss': f'{current_loss:.3f}', 'Current Acc': f'{current_acc:.3f}'})
         if use_wandb and batch % frequency_log == 0:
-            wandb.log({'train_loss': current_loss, 'train_acc': current_acc}, step=current_epoch * len(dataloader.dataset) + (batch + 1) * batch_size)
+            wandb.log({'train_loss': current_loss, 'train_acc': current_acc}, step=int(current_epoch * len(dataloader.dataset) * subset_ratio) + (batch + 1) * batch_size)
 
 
     train_loss /= train_steps
-    train_acc /= len(dataloader.dataset)
+    size = nb_batches * batch_size
+    train_acc /= size
 
     return train_loss, train_acc
 

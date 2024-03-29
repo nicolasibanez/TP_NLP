@@ -1,5 +1,4 @@
 #!/bin/bash
-
 #SBATCH --job-name=nlp
 #SBATCH --nodes=1
 #SBATCH --partition=gpu_prod_long
@@ -7,7 +6,7 @@
 #SBATCH --output=logslurms/slurm-%A_%a.out
 #SBATCH --error=logslurms/slurm-%A_%a.err
 #SBATCH --array=1-1
-#SBATCH --nodelist=sh04
+#SBATCH --nodelist=sh03
 current_dir=`pwd`
 export PATH=$PATH:~/.local/bin
 

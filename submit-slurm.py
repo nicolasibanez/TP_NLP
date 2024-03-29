@@ -17,7 +17,7 @@ def get_available_nodes():
             used_nodes = result.stdout.split()
             print(f"Currently used nodes: {used_nodes}")
             # all_nodes = [f'sh0{i}' for i in range(1, 10)] #+ [f'sh2{i}' for i in range(0, 3)]
-            all_nodes = [f'sh0{i}' for i in [1, 2, 3, 4, 6]] + [f'sh2{i}' for i in [0, 1, 2]]
+            all_nodes = [f'sh0{i}' for i in [1, 2, 3, 4, 5, 6, 8]] + [f'sh2{i}' for i in [0, 1, 2]]
             # Determine available nodes by removing used nodes from the all_nodes list
             available_nodes = [node for node in all_nodes if node not in used_nodes]
             print(f"Available nodes: {available_nodes}")
