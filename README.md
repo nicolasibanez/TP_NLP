@@ -5,7 +5,7 @@ This repository contains the code and results for our Natural Language Inference
 - Nicolas Ibanez (nicolas.ibanez@student-cs.fr)
 - Paul Cayet (paul.cayet@student-cs.fr)
 ## File Description
-The main file of interest is ``NLI_TP.ipynb``, which contains the explanation for data, training and evaluating. The files ``main.py``, ``utils.py``, ``model.py`` and ``dataset.py`` were used for the train
+The main file of interest is ``NLI_TP.ipynb``, which contains the explanation for data, training and evaluating. The files ``main.py``, ``utils.py``, ``checkpoint.py``, ``model.py`` and ``dataset.py`` were used for the train
 
 ## Results
 The results of the different models are summarized in the following table :
