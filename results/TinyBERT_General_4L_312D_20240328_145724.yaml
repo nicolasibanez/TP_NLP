@@ -1,0 +1,5 @@
+checkpoint: ckpt/TinyBERT_General_4L_312D_20240328_145724.pth
+model: huawei-noah/TinyBERT_General_4L_312D
+test_acc: 0.877442996742671
+test_acc_both: 0.7351384364820847
+test_acc_swap: 0.5162866449511401

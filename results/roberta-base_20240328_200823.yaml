@@ -1,0 +1,5 @@
+checkpoint: ckpt/roberta-base_20240328_200823.pth
+model: roberta-base
+test_acc: 0.9098127035830619
+test_acc_both: 0.729336319218241
+test_acc_swap: 0.5594462540716613

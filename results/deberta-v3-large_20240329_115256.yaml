@@ -1,0 +1,5 @@
+checkpoint: ckpt/deberta-v3-large_20240329_115256.pth
+model: microsoft/deberta-v3-large
+test_acc: 0.9275244299674267
+test_acc_both: 0.7808428338762216
+test_acc_swap: 0.594564332247557

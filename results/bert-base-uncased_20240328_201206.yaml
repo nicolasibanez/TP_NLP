@@ -1,0 +1,5 @@
+checkpoint: ckpt/bert-base-uncased_20240328_201206.pth
+model: bert-base-uncased
+test_acc: 0.9072679153094463
+test_acc_both: 0.7406351791530945
+test_acc_swap: 0.5565960912052117
