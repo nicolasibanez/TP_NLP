@@ -135,3 +135,51 @@ def custom_collate_fn(batch, pad_token_id):
         return {'input_ids': input_ids, 'attention_mask': attention_masks, 'token_type_ids': token_type_ids}, torch.tensor(labels_list)
 
     return {'input_ids': input_ids, 'attention_mask': attention_masks}, torch.tensor(labels_list)
+
+
+class NLIDataset(Dataset):
+    def __init__(self, dataset, tokenizer, split = 'train', size: int = None, augmentation = False, force_augmentation = False):
+        self.tokenizer = tokenizer
+
+        if size is None:
+            size = len(dataset[split])
+        self.premise = dataset[split]['premise'][:size]
+        self.hypothesis = dataset[split]['hypothesis'][:size]
+        self.labels = dataset[split]['label'][:size]
+
+        self.augmentation = augmentation
+        self.force_augmentation = force_augmentation
+    
+    def __len__(self):
+        return len(self.premise)
+
+    def __getitem__(self, idx):
+        premise = self.premise[idx]
+        hypothesis = self.hypothesis[idx]
+        label = self.labels[idx]
+
+        if self.augmentation and (torch.rand(1) > 0.5 or self.force_augmentation):
+            # Swap the premise and hypothesis
+            premise, hypothesis = hypothesis, premise
+
+        inputs = self.tokenizer(premise, hypothesis, padding = 'max_length', truncation = True, max_length = 128, return_tensors = 'pt')
+        return inputs, label
+
+def custom_collate_fn_nli(batch):
+    # Initialize the keys
+    inputs = {k: None for k in batch[0][0].keys()}
+    labels = None
+
+    for example in batch:
+        for k in example[0].keys():
+            if inputs[k] is None:
+                inputs[k] = example[0][k]
+            else:
+                inputs[k] = torch.cat((inputs[k], example[0][k]), dim = 0)
+        if labels is None:
+            labels = torch.tensor([example[1]])
+        else:
+            labels = torch.cat((labels, torch.tensor([example[1]])), dim = 0)
+    return inputs, labels
+    
+
