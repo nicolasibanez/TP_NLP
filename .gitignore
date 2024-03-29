@@ -1,4 +1,8 @@
 ckpt/
+old_ckpt/
 configs/
 logslurms/
 wandb/
+tp8_llm.ipynb
+tp8.ipynb
+notebook.ipynb
