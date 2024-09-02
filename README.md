@@ -6,7 +6,7 @@ This repository contains the code and results for our Natural Language Inference
 - Paul Cayet (paul.cayet@student-cs.fr)
 
 ## File Description
-The main file of interest is ``NLI_TP.ipynb``, which contains the explanation for data, training and evaluating. The files ``main.py``, ``utils.py``, ``checkpoint.py``, ``model.py`` and ``dataset.py`` were used for the train.
+The main file of interest is ``NLI_TP.ipynb``, which contains the explanation for data, training and evaluating. The files ``main.py``, ``utils.py``, ``checkpoint.py``, ``model.py`` and ``dataset.py`` were used for the training.
 
 For the LLM-based approach, the inference code can be found in the ``llm_code`` folder. Detailed results can be found in the ``llm_results`` folder. 
 
